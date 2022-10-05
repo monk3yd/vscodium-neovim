@@ -4,9 +4,65 @@
 -- else
     -- ordinary Neovim
 --end
---
--- Leader Key
-vim.g.mapleader = ' '
+
+-- Keymappings --
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
+-- Shorten function name
+local keymap = vim.keymap.set
+-- keymap options
+local opts = { silent = true , remap = false }
+
+--   <mode> <keys> <actions> <options>
+keymap("n", "Space", "<Nop>", opts)
+
+-- Space as leader key
+vim.g.mapleader = " "
+
+-- Better Navigation
+keymap("n", "<C-k>" ":call VSCodeNotify('workbench.action.navigateUp')<CR>", opts)
+keymap("x", "<C-k>" ":call VSCodeNotify('workbench.action.navigateUp')<CR>", opts)
+
+keymap("n", "<C-j>" ":call VSCodeNotify('workbench.action.navigateDown')<CR>", opts)
+keymap("x", "<C-j>" ":call VSCodeNotify('workbench.action.navigateDown')<CR>", opts)
+
+keymap("n", "<C-h>" ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", opts)
+keymap("x", "<C-h>" ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", opts)
+
+keymap("n", "<C-l>" ":call VSCodeNotify('workbench.action.navigateRight')<CR>", opts)
+keymap("x", "<C-l>" ":call VSCodeNotify('workbench.action.navigateRight')<CR>", opts)
+
+-- Split editor
+keymap("n", "<C-w>s", ":call <SID>split('h')<CR>", opts)
+keymap("x", "<C-w>s", ":call <SID>split('h')<CR>", opts)
+
+keymap("n", "<C-w>v", ":call <SID>split('v')<CR>", opts)
+keymap("x", "<C-w>v", ":call <SID>split('v')<CR>", opts)
+
+keymap("n", "<C-w>n", ":call <SID>splitNew('h', '__vscode_new__')<CR>", opts)
+keymap("x", "<C-w>n", ":call <SID>splitNew('h', '__vscode_new__')<CR>", opts)
+
+-- Manage editor's size
+keymap("n", "<C-w>>", ":<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>", opts)
+keymap("x", "<C-w>>", ":<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>", opts)
+
+keymap("n", "<C-w>+", ":<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>", opts)
+keymap("x", "<C-w>+", ":<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>", opts)
+
+keymap("n", "<C-w><", ":<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>", opts)
+keymap("x", "<C-w><", ":<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>", opts)
+
+keymap("n", "<C-w>-", ":<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>", opts)
+keymap("x", "<C-w>-", ":<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>", opts)
+
+-- Comments
 
 -- Options -- (maybe replace for vscodium native settings.json ?)
 vim.opt.backup = false,                          -- creates a backup file
@@ -64,5 +120,3 @@ vim.opt.fillchars.eob=" "
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")              -- hyphenated words by '-' are treated as one word
-
--- Keymappings --
