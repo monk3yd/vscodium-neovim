@@ -4,8 +4,11 @@
 -- else
     -- ordinary Neovim
 --end
+--
+-- Leader Key
+vim.g.mapleader = ' '
 
--- Options (maybe replace for vscodium native settings.json ?)
+-- Options -- (maybe replace for vscodium native settings.json ?)
 vim.opt.backup = false,                          -- creates a backup file
 vim.opt.clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
 vim.opt.height = 1,                              -- more space in the neovim command line for displaying messages
@@ -55,3 +58,11 @@ vim.opt.encoding = "utf-8",
 vim.opt.errorbells = false,
 vim.opt.softtabstop = 4,                         --
 -- set undodir=~/.vim/undodir            -- Install plugin undotree
+
+-- special
+vim.opt.fillchars.eob=" "
+vim.opt.shortmess:append "c"
+vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.iskeyword:append("-")              -- hyphenated words by '-' are treated as one word
+
+-- Keymappings --
